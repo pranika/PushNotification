@@ -28,15 +28,47 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login As"
+            android:text="Course"
             android:textSize="20dp"/>
         <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
-            android:id = "@+id/radiogroup"
+            android:id = "@+id/radiocourse"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <RadioButton android:id="@+id/radio_pirates"
+            <RadioButton android:id="@+id/cse_681"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CSE 681"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/cse_687"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CSE 687"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/cse_600"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CSE 600"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login As"
+            android:textSize="20dp"/>
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:id = "@+id/radiogroup"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/radio_pirates"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Student"
                 android:onClick="onRadioButtonClicked"/>
