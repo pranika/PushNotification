@@ -20,6 +20,38 @@
         android:ems="10"
         android:id="@+id/password"
         android:hint="Password" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Course"
+            android:textSize="20dp"/>
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:id = "@+id/radiocourse"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/cse_600"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CSE 600"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/cse_681"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CSE 681"
+
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/cse_687"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CSE 687"></RadioButton>
+        </RadioGroup>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
