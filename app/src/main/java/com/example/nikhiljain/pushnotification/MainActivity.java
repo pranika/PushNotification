@@ -29,8 +29,11 @@ public class MainActivity extends AppCompatActivity {
     private static final String TITLE = "title";
     private static final String MESSAGE = "message";
     private Firebase mref;
-    EditText title;
-    EditText message;
+
+    EditText title,body;
+    String coursetype="";
+
+
 
     String app_server_url = "http://192.168.56.1/push_notify/send_notification.php";
 
@@ -38,52 +41,44 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        title = (EditText) findViewById(R.id.ques);
-        message = (EditText) findViewById(R.id.ans);
-//
-//        user = new User();
-////        mref = new Firebase("https://pushnotification-a0791.firebaseio.com/Users");
-////        mref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//
-//                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
-//
-//                    HashMap users = (HashMap) userSnapshot.getValue();
-//                    System.out.println(users);
+        title = (EditText)findViewById(R.id.question);
+         body = (EditText)findViewById(R.id.answer);
+
         Bundle extras = getIntent().getExtras();
 
 
         if (extras.getString("login_type").equals("Instructor")) {
-                        final String coursetype = extras.getString("course_value").toString();
-                      //  final String professorid = users.get("id").toString();
-                        final String title_text = title.getText().toString();
-                        final String message_text = message.getText().toString();
+            Log.e("login",extras.getString("login_type"));
+          coursetype = extras.getString("course_value").toString();
+            Log.e("course",coursetype);
 
 
-                        SharedPreferences sharedPreferences = getApplicationContext().
-                                getSharedPreferences(getString(R.string.NOTIFY_PREF), Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(COURSE, coursetype);
-                        editor.putString(TITLE, title_text);
-                        editor.putString(MESSAGE, message_text);
-                        editor.commit();
-
-
-                        System.out.println("Course" + coursetype + "id");
                         button = (Button) findViewById(R.id.token_button);
 
                         button.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                String title_text = (String)title.getText().toString();
+                                String message_text = (String)body.getText().toString();
+                                System.out.println("value"+title_text);
+
                                 SharedPreferences sharedPreferences = getApplicationContext().
                                         getSharedPreferences(getString(R.string.NOTIFY_PREF), Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(COURSE, coursetype);
+                                editor.putString(TITLE, title_text);
+                                editor.putString(MESSAGE, message_text);
+                                editor.commit();
+
+
+                                System.out.println("Course" + coursetype + "id");
+                           sharedPreferences = getApplicationContext().
+                                        getSharedPreferences(getString(R.string.NOTIFY_PREF), Context.MODE_PRIVATE);
 //                               final  String token = sharedPreferences.getString(getString(R.string.NOTIFY_TOKEN),"");
-                                final String course = sharedPreferences.getString(COURSE, "NO COURSE FOUND");
-                                final String ques = sharedPreferences.getString(TITLE, "NO TITLE FOUND");
+                               final  String course = sharedPreferences.getString(COURSE, "NO COURSE FOUND");
+                               final  String ques = sharedPreferences.getString(TITLE, "NO TITLE FOUND");
                                 final String ans = sharedPreferences.getString(MESSAGE, "no message found");
-                                Log.d("course token", course);
+                                System.out.println("title"+ ques);
                                 //   System.out.println("COURSE"+course);
                                 StringRequest stringRequest = new StringRequest(Request.Method.POST, app_server_url,
                                         new Response.Listener<String>() {
@@ -117,17 +112,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-
-//                }
-//
-//
-//            }
-
-//            @Override
-//            public void onCancelled(FirebaseError firebaseError) {
-//
-//            }
-//        });
 
 
     }

@@ -20,23 +20,32 @@ public class NotifyMessagingService extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         String title = remoteMessage.getNotification().getTitle();
         String message = remoteMessage.getNotification().getBody();
+
+        String question_id =remoteMessage.getData().get("ques_id");
+        String question_type=remoteMessage.getData().get("ques_type");
+        String professor_id =remoteMessage.getData().get("prof_id");
+
+
+
         Log.d("title",title);
-
-        Intent intent =new Intent(this,MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
-
 
         NotificationCompat.Builder b = new NotificationCompat.Builder(this);
 
-//        b.setTicker(context.getString(R.string.update_notification_title));
         b.setContentTitle(title);
         b.setContentText(message);
 
         b.setSmallIcon(R.drawable.notify);
 
-
         b.setAutoCancel(true);
+        Intent intent =new Intent(this,StudentAnswer.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("title",title);
+        intent.putExtra("message",message);
+        intent.putExtra("question",message);
+        intent.putExtra("question_id",question_id);
+        intent.putExtra("question_type",question_type);
+        intent.putExtra("professor_id",professor_id);
+        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
         b.setContentIntent(pendingIntent);
         NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0,b.build());

@@ -2,4 +2,6 @@
     <string name="app_name">PushNotification</string>
     <string name="NOTIFY_PREF">com.example.nikhiljain.pushnotification.fcm_pref</string>
     <string name="NOTIFY_TOKEN">com.example.nikhiljain.pushnotification.fcm_token</string>
+
+    <string name="question">What type of question do you like to Post??</string>
 </resources>
